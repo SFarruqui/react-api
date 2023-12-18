@@ -1,0 +1,77 @@
+.App {
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.home-container {
+    margin-top: 20px;
+}
+
+.image-container {
+    margin-bottom: 20px;
+}
+
+.dog-image {
+    max-width: 70%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.breed-choices {
+    margin-bottom: 20px;
+}
+
+.breed-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.breed-button:hover {
+    background-color: #45a049;
+}
+
+.streak-display {
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+}
+
+.header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    font-size: 24px;
+}
+
+@keyframes changeColors {
+    0% { background-color: red; }
+    25% { background-color: blue; }
+    50% { background-color: green; }
+    75% { background-color: purple; }
+    100% { background-color: red; }
+  }
+  
+  @keyframes moveAcross {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(50%); }
+    100% { transform: translateX(0); }
+  }
+  
+  .container.content-centered h1 {
+    animation: changeColors 10s infinite, moveAcross 5s infinite;
+  }
+
+  
