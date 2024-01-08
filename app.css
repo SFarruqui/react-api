@@ -1,77 +1,162 @@
 .App {
-    text-align: center;
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    padding: 20px;
-    min-height: 100vh;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  min-height: 100vh;
+  padding: 20px;
 }
 
-.home-container {
-    margin-top: 20px;
+.navbar {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  font-size: 18px;
+}
+
+.title {
+  color: #333;
+  margin: 20px 0;
+}
+
+.game-container {
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .image-container {
-    margin-bottom: 20px;
+  margin: 20px 0;
 }
 
 .dog-image {
-    max-width: 70%;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .breed-choices {
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-.breed-button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+.breed-choice {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none; /* Prevents text selection */
 }
 
-.breed-button:hover {
-    background-color: #45a049;
+.breed-choice:hover {
+  background-color: #45a049;
 }
 
 .streak-display {
-    font-size: 20px;
-    color: #333;
-    font-weight: bold;
+  font-size: 20px;
+  color: #333;
+  font-weight: bold;
 }
 
-.header {
-    background-color: #333;
-    color: white;
-    padding: 10px 0;
-    font-size: 24px;
+/* Image Section */
+.image-section {
+  flex: 3;
+  background-color: #607D8B;
+  text-align: center;
+  padding: 20px;
 }
 
-@keyframes changeColors {
-    0% { background-color: red; }
-    25% { background-color: blue; }
-    50% { background-color: green; }
-    75% { background-color: purple; }
-    100% { background-color: red; }
-  }
-  
-  @keyframes moveAcross {
-    0% { transform: translateX(0); }
-    50% { transform: translateX(50%); }
-    100% { transform: translateX(0); }
-  }
-  
-  .container.content-centered h1 {
-    animation: changeColors 10s infinite, moveAcross 5s infinite;
-  }
+.dog-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
 
-  
+/* Breed Choices Article */
+.breed-article {
+  flex: 2;
+  background-color: #607d8bc7;
+  padding: 20px;
+}
+
+.breed-choices {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+
+.breed-choice {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.breed-choice:hover {
+  background-color: #45a049;
+}
+
+/* Navigation Bar */
+.navbar {
+  background-color: #333;
+  padding: 10px;
+  text-align: center;
+}
+
+.nav-button {
+  background-color: #607D8B;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.nav-button:hover {
+  background-color: #4CAF50;
+}
+
+/* Breed Choices */
+.breed-choices {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+
+.breed-choice {
+  background-color: #d3d3d3;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.breed-choice.correct {
+  background-color: #4CAF50;
+}
+
+.breed-choice.incorrect {
+  background-color: #f44336;
+}
+
+.scoreboard {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.scoreboard p {
+  font-size: 18px;
+  color: #333;
+}
+
