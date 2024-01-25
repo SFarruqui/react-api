@@ -2,6 +2,7 @@
 import React from "react";
 import { Nav, NavLink, NavMenu } from "./navbarelements";
 
+// includes all navigaiton links for user to click on and visit new page
 const Navbar = () => {
   return (
     <>

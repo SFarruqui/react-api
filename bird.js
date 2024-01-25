@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const Bird = () => {
+    // state for storing bird data and game mechanics
     const [birdData, setBirdData] = useState([]);
     const [currentBirdIndex, setCurrentBirdIndex] = useState(0);
     const [sciNameOptions, setSciNameOptions] = useState([]);
@@ -10,18 +11,21 @@ const Bird = () => {
     const [streak, setStreak] = useState(0);
     const [highScore, setHighScore] = useState(0);
     const [isCorrect, setIsCorrect] = useState(null);
-    const eBirdApiToken = 'r8i06qnhk3jg'; 
+    const eBirdApiToken = 'r8i06qnhk3jg'; // API token
     const [animateName, setAnimateName] = useState(false);
 
+    // fetch bird data on component mount
     useEffect(() => {
         fetchBirdData();
     }, []);
 
+    // animation effect for each new bird
     useEffect(() => {
         setAnimateName(true);
         setTimeout(() => setAnimateName(false), 1000);
     }, [currentBirdIndex]);
 
+    // function to fetch bird data from eBird API
     const fetchBirdData = () => {
         axios.get('https://api.ebird.org/v2/data/obs/KZ/recent', {
             headers: { 'X-eBirdApiToken': eBirdApiToken }
@@ -34,12 +38,14 @@ const Bird = () => {
         .catch(error => console.error('Error fetching bird data:', error));
     };
 
+    // updates the list of unique scientific names
     const updateSciNameOptions = (birds) => {
-        // Extract unique scientific names
-        let sciNames = birds.map(bird => bird.sciName).filter((value, index, self) => self.indexOf(value) === index);
+        let sciNames = birds.map(bird => bird.sciName)
+            .filter((value, index, self) => self.indexOf(value) === index);
         setSciNameOptions(sciNames);
     };
 
+    // randomly selects scientific names for the quiz options
     const getRandomSciNames = (correctSciName) => {
         let options = sciNameOptions.filter(name => name !== correctSciName);
         while (options.length > 2) {
@@ -49,11 +55,13 @@ const Bird = () => {
         return options.sort(() => Math.random() - 0.5);
     };
 
+    // handles the user's selection of a scientific name
     const handleSciNameSelection = (sciName) => {
         const correctSciName = birdData[currentBirdIndex].sciName;
         setSelectedSciName(sciName);
         setIsCorrect(sciName === correctSciName);
 
+        // updates streak and high score
         if (sciName === correctSciName) {
             setStreak(streak + 1);
             setHighScore(Math.max(highScore, streak + 1));
@@ -62,9 +70,11 @@ const Bird = () => {
             setStreak(0);
         }
 
+        // moves to the next bird
         setCurrentBirdIndex(currentBirdIndex < birdData.length - 1 ? currentBirdIndex + 1 : 0);
     };
 
+    // determines the button class based on the user's selection
     const getButtonClass = (sciName) => {
         if (sciName === selectedSciName && isCorrect) {
             return 'correct';
@@ -74,21 +84,26 @@ const Bird = () => {
         return '';
     };
 
+    // rendering the component
     return (
         <div className="main">
+            // navigation links
             <nav className="navbar">
                 <Link to="/dog" className="nav-button">Dog</Link>
                 <Link to="/cat" className="nav-button">Cat</Link>
                 <Link to="/bird" className="nav-button">Bird</Link>
             </nav>
 
+            // game section
             <section className="bird-section">
                 {birdData.length > 0 && (
                     <div className="game-container">
                         <h2>Guess the Scientific Name</h2>
+                        // displays the common name of the bird
                         <p className={`common-name ${animateName ? 'animate' : ''}`}>
                             {birdData[currentBirdIndex].comName}
                         </p>
+                        // options for scientific names
                         <div className="sci-name-choices">
                             {getRandomSciNames(birdData[currentBirdIndex].sciName).map((sciName, index) => (
                                 <button
@@ -104,6 +119,7 @@ const Bird = () => {
                 )}
             </section>
 
+            // scoreboard display
             <div className="scoreboard">
                 <p>Current Streak: {streak}</p>
                 <p>High Score: {highScore}</p>
@@ -112,4 +128,5 @@ const Bird = () => {
     );
 };
 
+// exporting the Bird component
 export default Bird;

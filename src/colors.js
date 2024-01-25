@@ -1,5 +1,5 @@
 import React from 'react';
-//colors page
+
 const Colors=({data})=>{
     return(
         <>
